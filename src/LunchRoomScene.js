@@ -46,24 +46,24 @@ BasicGame.LunchroomScene.prototype = {
             this.btnmelaniesay = this.game.add.button((this.melanie.x), (this.melanie.y - 180), 'saysmile', 
                                                        this.melanieDialog,this);
             this.btnmelaniesay.anchor.set(0.5,0.5);
-            this.tweenmelanie = this.add.tween(this.btnmelaniesay).to( { y:(this.btnmelaniesay.y + 10) }, 2200, Phaser.Easing.Bounce.Out, true);
-            this.tweenmelanie.repeat(-1);
+            this.tweenmelanie = this.add.tween(this.btnmelaniesay).to( { y:(this.btnmelaniesay.y + 10) }, 2200, 
+                                                                      Phaser.Easing.Bounce.Out, true,0,-1,true);
             this.btnGroup.add(this.btnmelaniesay);
             }
         if (!BasicGame.blspoketoperrylunch) {
             this.btnperrysay = this.game.add.button((this.perry.x), (this.perry.y - 180), 'saysmile', 
                                                        this.perryDialog,this);
             this.btnperrysay.anchor.set(0.5,0.5);
-            this.tweenperry = this.add.tween(this.btnperrysay).to( { y:(this.btnperrysay.y + 15) }, 2600, Phaser.Easing.Bounce.Out, true);
-            this.tweenperry.repeat(-1);
+            this.tweenperry = this.add.tween(this.btnperrysay).to( { y:(this.btnperrysay.y + 15) }, 2600, 
+                                                                  Phaser.Easing.Bounce.Out,true,0,-1,true);
             this.btnGroup.add(this.btnperrysay);
         }
         if (!BasicGame.blspoketoaspenlunch) {
             this.btnaspensay = this.game.add.button((this.aspen.x), (this.aspen.y - 180), 'saysmile', 
                                                        this.aspenDialog,this);
             this.btnaspensay.anchor.set(0.5,0.5);
-            this.tweenaspen = this.add.tween(this.btnaspensay).to( { y:(this.btnaspensay.y + 10) }, 2000, Phaser.Easing.Bounce.Out, true);
-            this.tweenaspen.repeat(-1);
+            this.tweenaspen = this.add.tween(this.btnaspensay).to( { y:(this.btnaspensay.y + 10) }, 2000, 
+                                                                  Phaser.Easing.Bounce.Out,true,0,-1,true);             
             this.btnGroup.add(this.btnaspensay);
         }
         

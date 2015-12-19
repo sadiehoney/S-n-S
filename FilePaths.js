@@ -2,14 +2,16 @@
  * General Stuff
  */
 
-var trialbackground = 'asset/background/walk-2280x1440.jpg';
-
+var preLoaderBar = 'asset/preloader.png';
 var heartSprite = 'asset/buttons/heart-69x50.png';
 var dialogbgSprite = 'asset/background/dialog-background.png';
 var saySmileSprite = 'asset/say-smile-blue.png';
 var helperArrow = 'asset/blue-arrow.png';
 var btnbackground = 'asset/buttons/buttonsblue.png';
 var watermark = 'asset/background/logo_69x50.png';
+var ScoreBell = 'asset/sounds/bell-short.m4a';
+var PencilSound = 'asset/sounds/pencil.m4a';
+
 
 /**
  * Splash State

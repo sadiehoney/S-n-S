@@ -1,5 +1,8 @@
 var ScoreBar = function(callingcontext, goal) {
 
+    //load the score sound
+    callingcontext.scorebell = callingcontext.add.audio('scoreBell');
+
     //get the upper x,y of the camera
     x = callingcontext.game.camera.x;
     y = callingcontext.game.camera.y;
@@ -32,6 +35,8 @@ ScoreBar.prototype.constructor = ScoreBar;
 ScoreBar.prototype.addscore = function(callingcontext,LowMedHigh) { 
 
     var scoretoadd;
+    var timebtweenadd;
+    
     if (LowMedHigh == "Low"){
         console.log("in low");
         scoretoadd = 5;
@@ -46,16 +51,26 @@ ScoreBar.prototype.addscore = function(callingcontext,LowMedHigh) {
             console.log("in High");
             scoretoadd = 15;
     }
+    timebtweenadd = 50;
     
-    while (scoretoadd > 0){
-        BasicGame.score = BasicGame.score + 1;
-        callingcontext.scoretext.setText(BasicGame.score);
-        scoretoadd--;
-    }
+    callingcontext.scorehearttween = 
+        callingcontext.add.tween(callingcontext.scoreheart.scale).to( { x: 1.5, y: 1.5 }, 
+                                                                     scoretoadd * timebtweenadd/5, 
+                                                                     Phaser.Easing.Bounce.Out, true,0,scoretoadd/5,true);
 
     
-}
+    callingcontext.scorebell.play();
+    //callingcontext.scoreheart
+    callingcontext.game.time.events.repeat(timebtweenadd,scoretoadd,this.updatescoredisplay,callingcontext,callingcontext);
+    
+};
 
+ScoreBar.prototype.updatescoredisplay = function(callingcontext) {
+    console.log("in update score display");
+    BasicGame.score = BasicGame.score + 1;
+    callingcontext.scoretext.setText(BasicGame.score);
+};
+    
 ScoreBar.prototype.trackevent = function(state,action) { 
     
     //google analytics code

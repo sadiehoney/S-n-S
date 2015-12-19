@@ -36,7 +36,8 @@ BasicGame.MeetAnnetteScene.prototype = {
         this.btnGroup.add(this.btnsaysmile);
         
         var tween;
-        tween = this.add.tween(this.btnsaysmile).to( { y: (this.annette.y - 225) }, 2400, Phaser.Easing.Bounce.Out, true);
+        tween = this.add.tween(this.btnsaysmile).to( { y: (this.annette.y - 210) }, 1800, 
+                                                    Phaser.Easing.Bounce.Out, true,0,-1,true);
         tween.repeat(10);        
 
 	},
