@@ -1,4 +1,4 @@
-var Dialog = function(callingcontext, btnOnly) {
+  var Dialog = function(callingcontext, btnOnly) {
 
     this.callingcontext = callingcontext;
     callingcontext.bottombuttonY = callingcontext.game.camera.y + callingcontext.game.camera.height/2;
@@ -22,7 +22,10 @@ Dialog.prototype.saystuff = function() {
     var buttonbg;
 
     //destroy the dialog group so they disappear as you progress
-    if (callingContext.dialogGroup.exists && callingContext.dialogkey > 0){
+    
+    if (callingContext.dialogGroup.exists && callingContext.dialogkey > 0 
+        && callingContext.dialogkey - callingContext.dialogarray.length != 0){
+        console.log("destroy dialogGroup");
         callingContext.dialogGroup.destroy();
     }
 
@@ -48,7 +51,7 @@ Dialog.prototype.saystuff = function() {
 Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromthiscontext) {
 
     //dialog background width is based on how big the scene background is
-    var dialogbgwidth = (2 * calledfromthiscontext.game.camera.width)/3;
+    var dialogbgwidth = (calledfromthiscontext.game.camera.width)/3; // 2*1/3 if we have it accross the whole screen
 
     var namestyle = {font: '30px Arial',fill: '#bebebe'};
     var dialogstyle = {font: '30px Arial',fill: '#000'};
@@ -71,25 +74,30 @@ Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromth
     calledfromthiscontext.dialogbutton.drawRoundedRect(0,0, dialogbgwidth, dialogbgheight);
     calledfromthiscontext.dialogbutton.visible = false;
 
-    var dialogbg = calledfromthiscontext.add.button(calledfromthiscontext.game.camera.x + calledfromthiscontext.game.camera.width/2,
-                                                    calledfromthiscontext.game.camera.y + calledfromthiscontext.game.camera.height/2,
-                                                    calledfromthiscontext.dialogbutton.generateTexture(),this.saystuff,this); // 
+    var dialogbg = 
+        calledfromthiscontext.add.button(
+            calledfromthiscontext.game.camera.x + calledfromthiscontext.game.camera.width/2 - dialogbgwidth/2,
+            calledfromthiscontext.game.camera.y + calledfromthiscontext.game.camera.height/2,
+            calledfromthiscontext.dialogbutton.generateTexture(),this.saystuff,this); // 
+    
     dialogbg.anchor.setTo(0.5,0);
 
     //set location of name and dialog text objects now that we've created the background
-    nametxt.x = dialogbg.left + padding;
+    nametxt.x = dialogbg.left + (1.5 * padding);
     nametxt.y = dialogbg.top + padding; 
     
-    dialogtxt.x = dialogbg.left + padding;
+    dialogtxt.x = dialogbg.left + (1.5 * padding);
     dialogtxt.y = nametxt.bottom;
 
      if (!calledfromthiscontext.dialogGroup.exists){
         calledfromthiscontext.dialogGroup = calledfromthiscontext.game.add.group();
+         console.log("create dialogGroup");
     }
     calledfromthiscontext.dialogGroup.add(dialogbg);
     calledfromthiscontext.dialogGroup.add(nametxt);
     calledfromthiscontext.dialogGroup.add(dialogtxt);
     
+    /* - taking this out since we have close ups now
     if (side == "right") {
         var charimage = calledfromthiscontext.add.sprite(dialogbg.right, dialogbg.top, image);
     } else {
@@ -98,6 +106,7 @@ Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromth
     charimage.scale.setTo(.5,.5);
     charimage.anchor.setTo(0.5,0);
     calledfromthiscontext.dialogGroup.add(charimage);
+    */
     
     calledfromthiscontext.dialogkey = calledfromthiscontext.dialogkey + 1;
     
@@ -106,7 +115,7 @@ Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromth
 Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calledfromthiscontext) {
     
     //create the dialog background based on how big the scene background is
-    var buttonbgwidth = (2 * calledfromthiscontext.game.camera.width)/3;
+    var buttonbgwidth = calledfromthiscontext.game.camera.width/3;
     var buttonpadding = 15;
     
     var buttonstyle = { font: '30px Arial'};
@@ -118,7 +127,9 @@ Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calle
     
     var buttonbgheight = buttontxt.height * 1.2;
 
-    var buttonXcoordinate = calledfromthiscontext.game.camera.x + calledfromthiscontext.game.camera.width/2;
+    var buttonXcoordinate = calledfromthiscontext.game.camera.x + 
+        calledfromthiscontext.game.camera.width/2 + 
+        buttonbgwidth/2;
     var buttonYcoordinate = calledfromthiscontext.bottombuttonY;
     if (thisbuttonnum > 0){
         buttonYcoordinate = buttonYcoordinate + buttonpadding;
@@ -126,7 +137,7 @@ Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calle
 
     calledfromthiscontext.button = calledfromthiscontext.add.graphics(0,0);
     calledfromthiscontext.button.lineStyle(2,0x000000, 1);
-    calledfromthiscontext.button.beginFill(0xFFFFFF);
+    calledfromthiscontext.button.beginFill(0x07cdf0);
     calledfromthiscontext.button.drawRoundedRect(0,0, buttonbgwidth, buttonbgheight);
     calledfromthiscontext.button.visible = false;
 
@@ -139,11 +150,13 @@ Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calle
     buttontxt.y = buttonbg.y + buttonbg.height/2;
 
     typeof someVar === 'undefined'
-    if (typeof calledfromthiscontext.btnGroup == 'undefined' || !calledfromthiscontext.btnGroup.exists){
-        calledfromthiscontext.btnGroup = calledfromthiscontext.game.add.group();
+    if (typeof calledfromthiscontext.dialogGroup == 'undefined' 
+        || !calledfromthiscontext.dialogGroup.exists){
+        calledfromthiscontext.dialogGroup = calledfromthiscontext.game.add.group();
+        console.log("create dialogGroup");
     }   
     
-    calledfromthiscontext.btnGroup.add(buttonbg);
-    calledfromthiscontext.btnGroup.add(buttontxt);
+    calledfromthiscontext.dialogGroup.add(buttonbg);
+    calledfromthiscontext.dialogGroup.add(buttontxt);
         
 };

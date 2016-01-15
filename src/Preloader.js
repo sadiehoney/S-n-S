@@ -30,9 +30,9 @@ BasicGame.Preloader.prototype = {
         this.load.image('splashSchool', SplashSchool);
 
         //general stuff - used on many scenes
-        this.load.audio('titleMusic', [SplashMusic]);
-        this.load.audio('scoreBell', [ScoreBell]);
-        this.load.audio('pencilSound', [PencilSound]);
+        this.load.audio('titleMusic', [SplashMusic,SplashMusicwav]);
+        this.load.audio('scoreBell', [ScoreBell,ScoreBellwav]);
+        this.load.audio('pencilSound', [PencilSound,PencilSoundwav]);
         
         this.load.image('watermark', watermark);
         this.load.image('saysmile', saySmileSprite);
@@ -50,13 +50,16 @@ BasicGame.Preloader.prototype = {
         //meet annette scene
         this.load.image('splashWalk', splashWalk);
         this.load.image('charAnnette',annetteSprite);
+        this.load.image('talkAnnette',annettetalking);
         
         //lunchroom scene
         this.load.image('lunchroombg', LunchroomBackground);
         this.load.image('charAspen', aspenSprite);
+        this.load.image('talkAspen', aspentalking);
         this.load.image('charMelanie', melanieSprite);
+        this.load.image('talkMelanie', melanietalking);
         this.load.image('charPerry', perrySprite);
-
+        this.load.image('talkPerry', perrytalking);
 
 	},
 
@@ -81,6 +84,7 @@ BasicGame.Preloader.prototype = {
 		{
 			this.ready = true;
 			this.state.start('SplashScene');
+            //this.state.start('LetterScene');
 		}
 
 	} 

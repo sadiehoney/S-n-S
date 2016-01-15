@@ -25,9 +25,6 @@ BasicGame.LetterScene.prototype = {
         //create a dialog group - so we can make it disapper when we want to
         this.dialogGroup = this.game.add.group();
 
-        //create a button group that will always get destroyed when a choice is made
-        this.btnGroup = this.game.add.group();
-                
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
         allthingstosay.push({dialog: "You wake up and find a note on the dining room table.", charactername: "", characterimage: ""});
@@ -46,7 +43,7 @@ BasicGame.LetterScene.prototype = {
 	},
 
 	readNote: function () {
-        this.btnGroup.destroy(true,false);
+        this.dialogGroup.destroy(true,false);
         
         this.ScoreBar.trackevent(this.key,'readNote');
     

@@ -17,36 +17,24 @@ BasicGame.PerryLunchroomScene.prototype = {
 
         this.background = new ScaleBackground(this,'lunchroombg');  
         
+        this.perry = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
+                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkPerry');
+        this.perry.anchor.set(0.5, 0);
+        
         this.ScoreBar = new ScoreBar(this,"Meet someone new");
         
-        this.chloe = this.add.sprite(this.game.camera.x + (2 * this.game.camera.width/3), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charChloe');
-        this.chloe.anchor.set(0.5, 0.5);
-        
-        this.melanie = this.add.sprite(this.game.camera.x + (this.game.camera.width/3), 
-                                       this.game.camera.y + (this.game.camera.height/2), 'charMelanie');
-        this.melanie.anchor.set(0.5, 0.5);
-        
-        this.perry = this.add.sprite(this.game.camera.x + (this.game.camera.width/3 + 100), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charPerry');
-        this.perry.anchor.set(0.5, 0.5);
-        
-        this.aspen = this.add.sprite(this.game.camera.x + (this.game.camera.width/3 + 200), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charAspen');
-        this.aspen.anchor.set(0.5, 0.5);
-
         this.dialogGroup = this.game.add.group();
-
-        //group for the say smile buttons
-        this.btnGroup = this.game.add.group();
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "Can I help you? Do you need something?", charactername: "Perry", characterimage: "charPerry", side:"left"});
+        allthingstosay.push({dialog: "Can I help you? Do you need something?", 
+                             charactername: "Perry", characterimage: "charPerry", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Hi! My name is Chloe. What's yours?", choicedestination: this.whatsyourname});
-        objchoices.push({choicetxt: "No! I don't need anything. (How embarrassing!).", choicedestination: this.donewithperry});
+        objchoices.push({choicetxt: "Hi! My name is Chloe. What's yours?", 
+                         choicedestination: this.whatsyourname});
+        objchoices.push({choicetxt: "No! I don't need anything. (How embarrassing!).", 
+                         choicedestination: this.donewithperry});
         //objchoices.push({choicetxt: "Third Choice", choicedestination: this.startGame});
         //objchoices.push({choicetxt: "Fourth Choice", choicedestination: this.startGame});
         //objchoices.push({choicetxt: "Fifth choice", choicedestination: this.startGame});
@@ -67,17 +55,19 @@ BasicGame.PerryLunchroomScene.prototype = {
     
     whatsyourname: function () {
         this.ScoreBar.trackevent(this.key,'whatsyourname');
-        this.btnGroup.destroy();
+        this.dialogGroup.destroy();
         this.ScoreBar.addscore(this,"High");
         
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "I'm Perry.", charactername: "Perry", characterimage: "charPerry", side:"left"});
+        allthingstosay.push({dialog: "I'm Perry.", 
+                             charactername: "Perry", characterimage: "charPerry", side:"left"});
         
         var objchoices = [];
         objchoices.push({choicetxt: "So nice to meet you! Do you know where I can get something to drink?", 
                          choicedestination: this.nicetomeetyou});
-        objchoices.push({choicetxt: "(Smile silently)", choicedestination: this.donewithperry});
+        objchoices.push({choicetxt: "(Smile silently)", 
+                         choicedestination: this.donewithperry});
     
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;
@@ -88,7 +78,7 @@ BasicGame.PerryLunchroomScene.prototype = {
 
     nicetomeetyou: function () {
         this.ScoreBar.trackevent(this.key,'nicetomeetyou');
-        this.btnGroup.destroy();
+        this.dialogGroup.destroy();
         this.ScoreBar.addscore(this,"High");
         
         //create a dialog object with thingtosay, nameofcharacter, characterimage
@@ -110,7 +100,7 @@ BasicGame.PerryLunchroomScene.prototype = {
 
     perrygottago: function () {
         this.ScoreBar.trackevent(this.key,'perrygottago');
-        this.btnGroup.destroy();
+        this.dialogGroup.destroy();
         this.ScoreBar.addscore(this,"High");
         
         //create a dialog object with thingtosay, nameofcharacter, characterimage
@@ -128,13 +118,12 @@ BasicGame.PerryLunchroomScene.prototype = {
         this.dialogkey = 0;
         this.Dialog = new Dialog(this); //need to pass the context
 
-        this.state.start('LunchroomScene');
 
     },
     
     backtolunchroom: function () {
         this.ScoreBar.trackevent(this.key,'backtolunchroom');
-        this.btnGroup.destroy();
+        this.dialogGroup.destroy();
         this.state.start('LunchroomScene');
 
     },

@@ -17,7 +17,7 @@ BasicGame.IntroScene.prototype = {
         this.background = new ScaleBackground(this,'introbg');        
         this.ScoreBar = new ScoreBar(this, "Meet your character");
         
-        this.character = this.add.sprite(this.game.camera.x + (2 * this.game.camera.width/3), 
+        this.character = this.add.sprite(this.game.camera.x + this.game.camera.width/2, 
                                          this.game.camera.y + this.game.camera.height/2, 'charChloe');
         this.character.anchor.set(0.5, 0.5);
         
@@ -32,7 +32,7 @@ BasicGame.IntroScene.prototype = {
         
         var tween;
         tween = this.add.tween(btnsaysmile).to( { y: (this.character.y - 175) }, 2400, Phaser.Easing.Bounce.Out, true);
-        tween.repeat(10);        
+        tween.repeat(10);     
 
 	},
 
@@ -47,7 +47,7 @@ BasicGame.IntroScene.prototype = {
             dialog: "In this preview version of Sweet-n-Sour you are going to be me.", 
             charactername: "Chloe", characterimage: "charChloe", side: "right"});
         allthingstosay.push({
-            dialog: "Don't worry, in the real game you'll get to choose your name, your grade, how you look, and what kinds of things you like to do.", 
+            dialog: "In the real game you'll get to choose your name, how you look, and what kinds of things you like to do.", 
             charactername: "Chloe", characterimage: "charChloe", side: "right"});
         allthingstosay.push({dialog: "Let's get started. Click on start game!", charactername: "Chloe", characterimage: "charChloe", side: "right"});
         var objchoices = [];
@@ -71,6 +71,14 @@ BasicGame.IntroScene.prototype = {
         this.ScoreBar.trackevent(this.key,'startGame');
         //	And start the actual game
         this.state.start('LetterScene');
+
+	},
+
+	gotoFeedback: function () {
+        
+        document.location.href = 'http://sweetnsourgame.com';
+    
+
 
 	}
 

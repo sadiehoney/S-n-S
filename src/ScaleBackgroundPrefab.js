@@ -12,6 +12,7 @@ var ScaleBackground = function(callingcontext,background) {
     callingcontext.game.camera.x = callingcontext.cameraX;
     callingcontext.game.camera.y = callingcontext.cameraY;
     
+    //background fades in - seems to cause a performance hit
     //callingcontext.game.add.tween(callingcontext.background).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 0, false);
 
 };

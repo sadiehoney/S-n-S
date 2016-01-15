@@ -39,6 +39,30 @@ BasicGame.LunchroomScene.prototype = {
         this.aspen.anchor.set(0.5, 0.5);
 
         this.dialogGroup = this.game.add.group();
+        
+        //for testing
+        /*
+        BasicGame.blspoketoaspenlunch = true;
+        BasicGame.blspoketomelanielunch = true;
+        BasicGame.blspoketoperrylunch = true;
+        */
+
+        if(BasicGame.blspoketoaspenlunch && BasicGame.blspoketomelanielunch && BasicGame.blspoketoperrylunch) {
+            //feedback and play again buttons
+            var allthingstosay = [];
+
+            var objchoices = [];
+            objchoices.push({choicetxt: "I want to play the full game when its ready", 
+                             choicedestination: this.signup});
+            objchoices.push({choicetxt: "I have some ideas to make the game better", choicedestination: this.feedback});
+            objchoices.push({choicetxt: "Play Again", choicedestination: this.playagain});
+
+            this.dialogarray = allthingstosay;
+            this.choiceobject = objchoices;
+            this.dialogkey = 0;
+            this.Dialog = new Dialog(this); //need to pass the context
+
+        }
 
         //group for the say smile buttons
         this.btnGroup = this.game.add.group();
@@ -85,8 +109,20 @@ BasicGame.LunchroomScene.prototype = {
         this.btnGroup.destroy();
         this.state.start('MelanieLunchroomScene');
     },
-    
 
+    signup: function () {
+        this.btnGroup.destroy();
+        document.location.href = signupURL;
+    },
+    feedback: function () {
+        this.btnGroup.destroy();
+        document.location.href = feedbackURL;
+    },
+    playagain: function () {
+        this.btnGroup.destroy();
+        this.state.start('SplashScene');
+    },
+    
     update: function () {
 
 		//	Do some nice funky main menu effect here

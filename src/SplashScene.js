@@ -20,7 +20,7 @@ BasicGame.SplashScene.prototype = {
 	},
 
     startMusic: function () {
-        this.btnGroup.destroy(true,false);
+        this.dialogGroup.destroy(true,false);
         //show the logo
         this.logo = new ScaleBackground(this,'splashLogo');
 
