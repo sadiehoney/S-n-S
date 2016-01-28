@@ -15,14 +15,13 @@ BasicGame.IntroScene.prototype = {
 		//	Naturally I expect you to do something significantly better :)
 
         this.background = new ScaleBackground(this,'introbg');        
-        this.ScoreBar = new ScoreBar(this, "Meet your character");
         
         this.character = this.add.sprite(this.game.camera.x + this.game.camera.width/2, 
                                          this.game.camera.y + this.game.camera.height/2, 'charChloe');
         this.character.anchor.set(0.5, 0.5);
         
-        this.dialogGroup = this.game.add.group();
-
+        this.ScoreBar = new ScoreBar(this, "Meet your character");
+        
         this.btnGroup = this.game.add.group();
         var btnsaysmile = this.game.add.button(this.character.x, (this.character.y - 200), 'saysmile', this.chloeDialog,this);
         
@@ -37,7 +36,20 @@ BasicGame.IntroScene.prototype = {
 	},
 
 	chloeDialog: function () {
+        
+        //this.background = new ScaleBackground(this,'introbg');        
+
         this.btnGroup.destroy(true,false);
+        this.character.destroy();
+
+        this.chloe = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
+                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkChloe');
+        this.chloe.anchor.set(0.5, 0);
+        
+        this.ScoreBar = new ScoreBar(this, "Meet your character");
+
+        this.dialogGroup = this.game.add.group();
+
     
             //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
@@ -66,7 +78,7 @@ BasicGame.IntroScene.prototype = {
 
 	},
 
-	startGame: function () {
+	startGame: function () {  
     
         this.ScoreBar.trackevent(this.key,'startGame');
         //	And start the actual game

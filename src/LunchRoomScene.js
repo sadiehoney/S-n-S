@@ -48,14 +48,19 @@ BasicGame.LunchroomScene.prototype = {
         */
 
         if(BasicGame.blspoketoaspenlunch && BasicGame.blspoketomelanielunch && BasicGame.blspoketoperrylunch) {
+
+            //play music at the end
+            this.music = this.add.audio('titleMusic');
+            this.music.play();
+            
             //feedback and play again buttons
             var allthingstosay = [];
-
             var objchoices = [];
-            objchoices.push({choicetxt: "I want to play the full game when its ready", 
+            objchoices.push({choicetxt: "Let me play the full game when it's ready!", 
                              choicedestination: this.signup});
-            objchoices.push({choicetxt: "I have some ideas to make the game better", choicedestination: this.feedback});
-            objchoices.push({choicetxt: "Play Again", choicedestination: this.playagain});
+            objchoices.push({choicetxt: "I have some ideas to share!", choicedestination: this.feedback});
+            objchoices.push({choicetxt: "I hated this game!", choicedestination: this.hated});
+            objchoices.push({choicetxt: "Play Again!", choicedestination: this.playagain});
 
             this.dialogarray = allthingstosay;
             this.choiceobject = objchoices;
@@ -111,14 +116,22 @@ BasicGame.LunchroomScene.prototype = {
     },
 
     signup: function () {
+        this.ScoreBar.trackevent(this.key,'signup');
         this.btnGroup.destroy();
         document.location.href = signupURL;
     },
     feedback: function () {
+        this.ScoreBar.trackevent(this.key,'shareIdeas');
+        this.btnGroup.destroy();
+        document.location.href = feedbackURL;
+    },
+    hated: function () {
+        this.ScoreBar.trackevent(this.key,'hatedIt');
         this.btnGroup.destroy();
         document.location.href = feedbackURL;
     },
     playagain: function () {
+        this.ScoreBar.trackevent(this.key,'playAgain');
         this.btnGroup.destroy();
         this.state.start('SplashScene');
     },

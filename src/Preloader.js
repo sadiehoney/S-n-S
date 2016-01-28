@@ -41,6 +41,7 @@ BasicGame.Preloader.prototype = {
         //intro scene
         this.load.image('introbg', screenIntroBackground);
         this.load.image('charChloe', chloeSprite);
+        this.load.image('talkChloe',chloeTalk);
         this.load.image('heart', heartSprite);
         
         //letter scene
@@ -84,7 +85,7 @@ BasicGame.Preloader.prototype = {
 		{
 			this.ready = true;
 			this.state.start('SplashScene');
-            //this.state.start('LetterScene');
+            //this.state.start('LunchroomScene');
 		}
 
 	} 
