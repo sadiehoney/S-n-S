@@ -11,6 +11,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<meta name="apple-mobile-web-app-title" content="Sweet-n-Sour">
 	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+    
+    <script src="//load.sumome.com/" data-sumo-site-id="3804fcf6890e6989d12a67e305c247a33d0394aa30749e091c10117313e90d36" async="async"></script>
 
     <!-- this stuff was here before - do we really need these so big?
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -67,7 +69,18 @@
         ga('send', 'pageview');
     </script>
     
-	<script src="js/phaser.min.js"></script>
+    <!-- BEGIN PRIVY WIDGET CODE -->
+    <script type='text/javascript'>
+    var _d_site = _d_site || '7A9703757071CC14D012FDF8';
+    (function(w, d, p, s, s2) { 
+      w[p] = w[p] || function() { (w[p].q = w[p].q || []).push(arguments) }
+      s = d.createElement('script'); s.async = 1; s.src = '//widget.privy.com/assets/widget.js'; 
+      s2 = d.getElementsByTagName('script')[0]; s2.parentNode.insertBefore(s, s2); 
+    })(window, document, 'Privy');
+    </script>
+    <!-- END PRIVY WIDGET CODE -->
+    
+	<script src="js/phaser.js"></script>
     <script type="text/javascript" src="FilePaths.js"></script>
 	<script src="src/Boot.js"></script>
 	<script src="src/Preloader.js"></script>

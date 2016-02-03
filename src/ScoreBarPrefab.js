@@ -8,7 +8,7 @@ var ScoreBar = function(callingcontext, goal) {
     y = callingcontext.game.camera.y;
     gamewidth = callingcontext.game.camera.width;
     gameheight = callingcontext.game.camera.height;
-    footery = y + gameheight - gameheight/10;
+    footery = y + gameheight - gameheight/8;
 
     callingcontext.scorebar = callingcontext.add.graphics(0,0);
     callingcontext.scorebar.lineStyle(2,0x000000, 1);
@@ -47,8 +47,20 @@ var ScoreBar = function(callingcontext, goal) {
     callingcontext.feedbackbutton.alpha = 0.3;
     callingcontext.signuptext = callingcontext.add.text(x + gamewidth/2,
                                                         footery + callingcontext.feedbackbutton.height/2,
-                                                        "Like what you see? Sign up to play the full game when it's ready!");
+                                                        "Like what you see? Sign up to play the full game when it's ready!",
+                                                       {font: '20px Arial',fill: '#000'});
     callingcontext.signuptext.anchor.set(0.5,0.5);
+    
+    callingcontext.tweenfeedbackbutton = 
+    callingcontext.add.tween(callingcontext.signuptext.scale).to( { x: 1.25, y: 1.25 }, 
+                                                                     500, 
+                                                                     null, true,0,0,true);
+
+    
+    callingcontext.copyrighttext = callingcontext.add.text(x + gamewidth/2, 
+                                                           footery + callingcontext.feedbackbutton.height * 1.5, 
+                                                           "Copyright 2016 Sweet-n-Sour",{font: '15px Arial',fill: '#000'});
+    callingcontext.copyrighttext.anchor.set(0.5,0.5);
 
 };
 

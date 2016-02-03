@@ -56,11 +56,11 @@ BasicGame.LunchroomScene.prototype = {
             //feedback and play again buttons
             var allthingstosay = [];
             var objchoices = [];
-            objchoices.push({choicetxt: "Let me play the full game when it's ready!", 
+            objchoices.push({choicetxt: "Let me play the full game when it's ready", 
                              choicedestination: this.signup});
-            objchoices.push({choicetxt: "I have some ideas to share!", choicedestination: this.feedback});
-            objchoices.push({choicetxt: "I hated this game!", choicedestination: this.hated});
-            objchoices.push({choicetxt: "Play Again!", choicedestination: this.playagain});
+            objchoices.push({choicetxt: "I have some ideas to share", choicedestination: this.feedback});
+            objchoices.push({choicetxt: "I hated this game", choicedestination: this.hated});
+            objchoices.push({choicetxt: "Play Again", choicedestination: this.playagain});
 
             this.dialogarray = allthingstosay;
             this.choiceobject = objchoices;
