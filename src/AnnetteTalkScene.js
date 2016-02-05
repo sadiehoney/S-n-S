@@ -14,12 +14,13 @@ BasicGame.AnnetteTalkScene.prototype = {
 		//	Here all we're doing is playing some music and adding a picture and button
 		//	Naturally I expect you to do something significantly better :)
 
-        this.background = new ScaleBackground(this,'splashWalk');        
+        this.background = new ScaleBackground(this,'walkbackgroundClose');        
         //make her bigger, look at lunchroom stuff
         this.annette = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
-                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkAnnette');
+                                       //this.cameraY + (1.5 * this.game.camera.height/10), 'talkAnnette');
+                                       this.cameraY + (this.game.camera.height - this.game.camera.height/4), 'talkAnnette');
         
-        this.annette.anchor.set(0.5, 0);
+        this.annette.anchor.set(0.5, 0.5);
         this.ScoreBar = new ScoreBar(this,"Meet your guide");
         
         this.dialogGroup = this.game.add.group();

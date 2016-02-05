@@ -43,6 +43,7 @@ var letterbg = 'asset/background/letter-bg-393x500.jpg';
 * Walk with Annette Scene State
 */
 var splashWalk = 'asset/background/walk-2280x1440.jpg';
+var walkbackgroundClose = 'asset/background/walkclose-2280x1440.jpg';
 var annetteSprite = 'asset/character/teen-color-phaser.png';
 var annettetalking = 'asset/character/teen-425x974.png';
 

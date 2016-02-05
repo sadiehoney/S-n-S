@@ -50,6 +50,7 @@ BasicGame.Preloader.prototype = {
         
         //meet annette scene
         this.load.image('splashWalk', splashWalk);
+        this.load.image('walkbackgroundClose',walkbackgroundClose);
         this.load.image('charAnnette',annetteSprite);
         this.load.image('talkAnnette',annettetalking);
         
@@ -85,7 +86,7 @@ BasicGame.Preloader.prototype = {
 		{
 			this.ready = true;
 			this.state.start('SplashScene');
-            //this.state.start('LunchroomScene');
+            //this.state.start('MeetAnnetteScene');
 		}
 
 	} 

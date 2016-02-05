@@ -71,8 +71,8 @@ Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromth
     calledfromthiscontext.dialogbutton.visible = false;
 
     //make these variables so we can mess with them based on display
-    var dialogbgX = calledfromthiscontext.game.camera.x + calledfromthiscontext.game.camera.width/2 - dialogbgwidth/2;
-    var dialogbgY = calledfromthiscontext.game.camera.y + (2 * calledfromthiscontext.game.camera.height/3);
+    var dialogbgX = calledfromthiscontext.game.camera.x + calledfromthiscontext.game.camera.width/2 + dialogbgwidth/2;
+    var dialogbgY = calledfromthiscontext.game.camera.y + (calledfromthiscontext.game.camera.height/4);
         
         var dialogbg = 
         calledfromthiscontext.add.button(dialogbgX,dialogbgY,
