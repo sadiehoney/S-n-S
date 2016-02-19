@@ -13,11 +13,12 @@ BasicGame.AspenLunchroomScene.prototype = {
         //set flag that we spoke with Aspen in the lunchroom
         BasicGame.blspoketoaspenlunch = true;
         
-        this.background = new ScaleBackground(this,'lunchroombg');   
+        this.background = new ScaleBackground(this,'schooltalk');   
 
-        this.aspen = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
-                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkAspen');
-        this.aspen.anchor.set(0.5, 0);
+        this.aspen = this.add.sprite(this.game.world.centerX - (this.game.camera.width/4), 
+                                         this.game.world.centerY, 'talkAspen');
+        this.aspen.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
+        this.aspen.anchor.set(0.5, 0.25);
 
         //probably not needed
         this.dialogGroup = this.game.add.group();
@@ -26,11 +27,13 @@ BasicGame.AspenLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "Hi! Did you just start here? I just started 2 weeks ago!", 
+        allthingstosay.push({dialog: "Hi! Did you just start here?", 
+                             charactername: "Aspen", characterimage: "charAspen", side:"left"});
+        allthingstosay.push({dialog: "I just started 2 weeks ago!", 
                              charactername: "Aspen", characterimage: "charAspen", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Yes. I just started today. My name is Chloe, what's yours?", choicedestination: this.whatsyourname});
+        objchoices.push({choicetxt: "Just started today. My name is Chloe.", choicedestination: this.whatsyourname});
         objchoices.push({choicetxt: "Yeah", choicedestination: this.yeah});
         
         this.dialogarray = allthingstosay;
@@ -47,15 +50,17 @@ BasicGame.AspenLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "I'm Aspen. I hope we can be friends. It has been really hard to meet people here.", 
+        allthingstosay.push({dialog: "I'm Aspen. I hope we can be friends.", 
                              charactername: "Aspen", characterimage: "charAspen", side:"left"});
-        allthingstosay.push({dialog: "What class do you have first? Maybe we can sit together or meet up later!", 
+        allthingstosay.push({dialog: "It has been really hard to meet people here.", 
+                             charactername: "Aspen", characterimage: "charAspen", side:"left"});
+        allthingstosay.push({dialog: "What class do you have first?", 
                              charactername: "Aspen", characterimage: "charAspen", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "I have English - what do you have?", 
+        objchoices.push({choicetxt: "English- what do you have?", 
                          choicedestination: this.ihaveenglishtoo});
-        objchoices.push({choicetxt: "Oh, let's just see if we run into each other.", choicedestination: this.okseeyou});
+        objchoices.push({choicetxt: "I'm not sure.", choicedestination: this.okseeyou});
     
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;
@@ -71,13 +76,15 @@ BasicGame.AspenLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "I'm Aspen. Do you need help finding a classroom or anything?", 
+        allthingstosay.push({dialog: "I'm Aspen.", 
+                             charactername: "Aspen", characterimage: "charAspen", side:"left"});
+        allthingstosay.push({dialog: "Can I help you find a classroom or anything?", 
                              charactername: "Aspen", characterimage: "charAspen", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "I have English - what do you have?", 
+        objchoices.push({choicetxt: "Where is English?", 
                          choicedestination: this.ihaveenglishtoo});
-        objchoices.push({choicetxt: "No, I'm good.  Thanks.", choicedestination: this.okseeyou});
+        objchoices.push({choicetxt: "No thanks.", choicedestination: this.okseeyou});
     
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;

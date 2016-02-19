@@ -67,19 +67,11 @@
         ga('send', 'pageview');
     </script>
     
-    <!-- BEGIN PRIVY WIDGET CODE -->
-    <script type='text/javascript'>
-    var _d_site = _d_site || '7A9703757071CC14D012FDF8';
-    (function(w, d, p, s, s2) { 
-      w[p] = w[p] || function() { (w[p].q = w[p].q || []).push(arguments) }
-      s = d.createElement('script'); s.async = 1; s.src = '//widget.privy.com/assets/widget.js'; 
-      s2 = d.getElementsByTagName('script')[0]; s2.parentNode.insertBefore(s, s2); 
-    })(window, document, 'Privy');
-    </script>
-    <!-- END PRIVY WIDGET CODE -->
+    
     
 	<script src="js/phaser.js"></script>
     <script type="text/javascript" src="FilePaths.js"></script>
+    <script type="text/javascript" src="Environment.js"></script>
 	<script src="src/Boot.js"></script>
 	<script src="src/Preloader.js"></script>
     <script src="src/DialogPrefab.js"></script>
@@ -110,13 +102,33 @@
 	//	Create your Phaser game and inject it into the game div.
 	//	We did it in a window.onload event, but you can do it anywhere (requireJS load, anonymous function, jQuery dom ready, - whatever floats your boat)
     
+    /*
+    var w = 1440 * (window.devicePixelRatio/3);
+    var h = 2880 * (window.devicePixelRatio/3);
+    */
+    
+    var w = "100";
+    var h = "100";
+    
+    //var game = new Phaser.Game(w,h,Phaser.AUTO,'game');
+    var game = new Phaser.Game(w,h,Phaser.AUTO);
+    
+    /*
     // get dimensions of the window considering retina displays
-    var w = window.innerWidth * window.devicePixelRatio,
-        h = window.innerHeight * window.devicePixelRatio;
+    var w = Number(window.innerWidth * window.devicePixelRatio),
+        h = Number(window.innerHeight * window.devicePixelRatio);
     
     // for landscape mode always pass in the bigger side of the device as width
-    var game = new Phaser.Game((h > w) ? h : w, (h > w) ? w : h, Phaser.AUTO, 'game');
+    //var game = new Phaser.Game((h > w) ? h : w, (h > w) ? w : h, Phaser.AUTO, 'game');
+
+
+    console.log(window.innerWidth + "," + window.innerHeight + "," + window.devicePixelRatio);
+    //var game = new Phaser.Game((w < h) ? w : h, (w < h) ? h : w, Phaser.AUTO, 'game');
+    var game = new Phaser.Game(w,h,Phaser.AUTO,'game');
+    console.log(game);
+    */
     
+        
     //as template is originally built
 	//	We're using a game size of 1024 x 768 here, but you can use whatever you feel makes sense for your game of course.
 	//var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');

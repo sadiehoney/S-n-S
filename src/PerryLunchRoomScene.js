@@ -15,11 +15,15 @@ BasicGame.PerryLunchroomScene.prototype = {
         //set flag that we spoke with Perry in the lunchroom
         BasicGame.blspoketoperrylunch = true;
 
-        this.background = new ScaleBackground(this,'lunchroombg');  
+        this.background = new ScaleBackground(this,'schooltalk');
+                
+        this.perry = this.add.sprite(this.game.world.centerX - (this.game.camera.width/4), 
+                                         this.game.world.centerY, 'talkPerry');
+        this.perry.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
+        this.perry.anchor.set(0.5, 0.25);
         
-        this.perry = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
-                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkPerry');
-        this.perry.anchor.set(0.5, 0);
+        //this.game.camera.focusOnXY(this.perry.x,this.perry.y);
+        this.game.camera.focusOn(this.perry);
         
         this.ScoreBar = new ScoreBar(this,"Meet someone new");
         
@@ -27,13 +31,13 @@ BasicGame.PerryLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "Can I help you? Do you need something?", 
+        allthingstosay.push({dialog: "Can I help you?", 
                              charactername: "Perry", characterimage: "charPerry", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Hi! My name is Chloe. What's yours?", 
+        objchoices.push({choicetxt: "Hi! I'm Chloe.", 
                          choicedestination: this.whatsyourname});
-        objchoices.push({choicetxt: "No! I don't need anything. (How embarrassing!).", 
+        objchoices.push({choicetxt: "Um no!", 
                          choicedestination: this.donewithperry});
         //objchoices.push({choicetxt: "Third Choice", choicedestination: this.startGame});
         //objchoices.push({choicetxt: "Fourth Choice", choicedestination: this.startGame});
@@ -64,7 +68,7 @@ BasicGame.PerryLunchroomScene.prototype = {
                              charactername: "Perry", characterimage: "charPerry", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "So nice to meet you! Do you know where I can get something to drink?", 
+        objchoices.push({choicetxt: "So nice to meet you!", 
                          choicedestination: this.nicetomeetyou});
         objchoices.push({choicetxt: "(Smile silently)", 
                          choicedestination: this.donewithperry});
@@ -83,11 +87,13 @@ BasicGame.PerryLunchroomScene.prototype = {
         
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "If you're thirsty there are water and juice machines against that back wall.", 
+        allthingstosay.push({dialog: "Are you thirsty?", 
+                             charactername: "Perry", characterimage: "charPerry", side:"left"});
+        allthingstosay.push({dialog: "There are water and juice machines over there.", 
                              charactername: "Perry", characterimage: "charPerry", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Which juice is best? Do you have a favorite?", 
+        objchoices.push({choicetxt: "Are they any good?", 
                          choicedestination: this.perrygottago});
         objchoices.push({choicetxt: "(Smile silently)", choicedestination: this.donewithperry});
         

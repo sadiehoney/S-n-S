@@ -1,5 +1,7 @@
 BasicGame = {
 
+    scaleofimages: window.devicePixelRatio/3,
+    //scaleofimages: 1,
     /* Here we've just got some global level vars that persist regardless of State swaps */
     score: 0,
     blspoketoperrylunch: false,
@@ -27,22 +29,27 @@ BasicGame.Boot.prototype = {
 
         this.input.maxPointers = 1;
         this.stage.disableVisibilityChange = true;
-        this.world.setBounds(0,0,2280,1440);
 
         if (this.game.device.desktop)
         {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            this.scale.setMinMax(480, 260, 1024, 768);
+            BasicGame.scaleofimages = 1;
+            this.scale.scaleMode = Phaser.ScaleManager.RESIZE; //not totally sure this is what we want here
+            this.scale.setMinMax(480, 320, 768, 1024);
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
         }
         else
         {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            this.scale.setMinMax(480, 260, 1024, 768);
+            this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+            //landscape
+            //this.scale.setMinMax(480, 260, 1024, 768);
+            //this.scale.forceOrientation(true, false);
+            //portrait
+            this.scale.setMinMax(320, 480, 768, 1024);
+            this.scale.forceOrientation(false, true);
+            
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
-            this.scale.forceOrientation(true, false);
             this.scale.setResizeCallback(this.gameResized, this);
             this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
             this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this); 

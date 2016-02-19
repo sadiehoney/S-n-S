@@ -32,35 +32,36 @@ BasicGame.Preloader.prototype = {
         //general stuff - used on many scenes
         this.load.audio('titleMusic', [SplashMusic,SplashMusicwav]);
         this.load.audio('scoreBell', [ScoreBell,ScoreBellwav]);
-        this.load.audio('pencilSound', [PencilSound,PencilSoundwav]);
+        //this.load.audio('pencilSound', [PencilSound,PencilSoundwav]);
         
         this.load.image('watermark', watermark);
         this.load.image('saysmile', saySmileSprite);
-        this.load.image('helperarrow', helperArrow);
+        //this.load.image('helperarrow', helperArrow);
 
         //intro scene
         this.load.image('introbg', screenIntroBackground);
-        this.load.image('charChloe', chloeSprite);
+        //this.load.image('charChloe', chloeSprite);
         this.load.image('talkChloe',chloeTalk);
         this.load.image('heart', heartSprite);
         
         //letter scene
         this.load.image('housebg', splashHouse);
-        this.load.image('letterbg', letterbg);
+        //this.load.image('letterbg', letterbg);
         
         //meet annette scene
         this.load.image('splashWalk', splashWalk);
-        this.load.image('walkbackgroundClose',walkbackgroundClose);
-        this.load.image('charAnnette',annetteSprite);
+        //this.load.image('walkbackgroundClose',walkbackgroundClose);
+        //this.load.image('charAnnette',annetteSprite);
         this.load.image('talkAnnette',annettetalking);
         
         //lunchroom scene
         this.load.image('lunchroombg', LunchroomBackground);
-        this.load.image('charAspen', aspenSprite);
+        this.load.image('schooltalk', SchoolTalk);
+        //this.load.image('charAspen', aspenSprite);
         this.load.image('talkAspen', aspentalking);
-        this.load.image('charMelanie', melanieSprite);
+        //this.load.image('charMelanie', melanieSprite);
         this.load.image('talkMelanie', melanietalking);
-        this.load.image('charPerry', perrySprite);
+        //this.load.image('charPerry', perrySprite);
         this.load.image('talkPerry', perrytalking);
 
 	},
@@ -85,8 +86,8 @@ BasicGame.Preloader.prototype = {
 		if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
 		{
 			this.ready = true;
-			this.state.start('SplashScene');
-            //this.state.start('MeetAnnetteScene');
+			//this.state.start('SplashScene');
+            this.state.start('LunchroomScene');
 		}
 
 	} 

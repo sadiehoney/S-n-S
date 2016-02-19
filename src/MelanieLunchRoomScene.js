@@ -13,11 +13,12 @@ BasicGame.MelanieLunchroomScene.prototype = {
         //set flag that we spoke in the lunchroom
         BasicGame.blspoketomelanielunch = true;
 
-        this.background = new ScaleBackground(this,'lunchroombg');  
+        this.background = new ScaleBackground(this,'schooltalk');  
         
-        this.melanie = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
-                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkMelanie');
-        this.melanie.anchor.set(0.5, 0);
+        this.melanie = this.add.sprite(this.game.world.centerX - (this.game.camera.width/4), 
+                                         this.game.world.centerY, 'talkMelanie');
+        this.melanie.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
+        this.melanie.anchor.set(0.5, 0.25);
 
         this.dialogGroup = this.game.add.group();
         
@@ -29,8 +30,8 @@ BasicGame.MelanieLunchroomScene.prototype = {
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Hi! Yes, my name is Chloe. What's yours?", choicedestination: this.whatsyourname});
-        objchoices.push({choicetxt: "Yeah", choicedestination: this.yeah});
+        objchoices.push({choicetxt: "Yes! I'm Chloe.", choicedestination: this.whatsyourname});
+        objchoices.push({choicetxt: "Yeah.", choicedestination: this.yeah});
         
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;
@@ -46,16 +47,19 @@ BasicGame.MelanieLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "I'm Melanie. You're REALLY lucky you met me. I'll help you hang out with the right people.", 
+        allthingstosay.push({dialog: "I'm Melanie.", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "You're REALLY lucky you met me.", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "I'll help you hang out with the right people.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         allthingstosay.push({dialog: "There are a LOT of losers here.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Oh... OK... I guess so", 
+        objchoices.push({choicetxt: "Oh... OK...", 
                          choicedestination: this.thatsfantastic});
-        objchoices.push({choicetxt: "Who are the best people?", choicedestination: this.thatsfantastic});
-        objchoices.push({choicetxt: "Wow! Rude! I'll make my own decisions.", choicedestination: this.thatsrude});
+        objchoices.push({choicetxt: "How rude! I make my own decisions.", choicedestination: this.thatsrude});
     
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;
@@ -71,17 +75,20 @@ BasicGame.MelanieLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "I'm Melanie. You're REALLY lucky you met me. I'll help you hang out with the right people.", 
+        allthingstosay.push({dialog: "I'm Melanie.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
-                allthingstosay.push({dialog: "There are a LOT of losers here.", 
+        allthingstosay.push({dialog: "You're REALLY lucky you met me.", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "I'll help you hang out with the right people.", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "There are a LOT of losers here.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
 
         
         var objchoices = [];
-        objchoices.push({choicetxt: "Oh... OK... I guess so", 
+        objchoices.push({choicetxt: "Oh... OK...", 
                          choicedestination: this.thatsfantastic});
-        objchoices.push({choicetxt: "Who are the best people?", choicedestination: this.thatsfantastic});
-        objchoices.push({choicetxt: "Wow! Rude! I think I'll make my own decisions.", choicedestination: this.thatsrude});
+        objchoices.push({choicetxt: "How rude! I make my own decisions.", choicedestination: this.thatsrude});
     
         this.dialogarray = allthingstosay;
         this.choiceobject = objchoices;
@@ -103,7 +110,7 @@ BasicGame.MelanieLunchroomScene.prototype = {
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "(Oops, talk to someone else.)", 
+        objchoices.push({choicetxt: "Oh, sorry.", 
                          choicedestination: this.backtolunchroom});
     
         this.dialogarray = allthingstosay;
@@ -120,13 +127,13 @@ BasicGame.MelanieLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "First we have to do something about the way you dress. That look is so last year.", 
+        allthingstosay.push({dialog: "First we have to do something about the way you dress.", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "That look is so last year.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         
         var objchoices = [];
-        objchoices.push({choicetxt: "I'm happy with my look. Criticize someone else.", choicedestination: this.tryingtohelp});
-        objchoices.push({choicetxt: "Oh... OK...", 
-                         choicedestination: this.gottago});
+        objchoices.push({choicetxt: "I'm happy with my look.", choicedestination: this.tryingtohelp});
         objchoices.push({choicetxt: "Thanks! I love your look.", choicedestination: this.gottago});
     
         this.dialogarray = allthingstosay;
@@ -162,7 +169,9 @@ BasicGame.MelanieLunchroomScene.prototype = {
 
         //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
-        allthingstosay.push({dialog: "(Checks phone.) Gotta go! My mom is picking me up for my orthodontist appointment. Ugh!", 
+        allthingstosay.push({dialog: "(Checks phone.) Gotta go!", 
+                             charactername: "Melanie", characterimage: "charMelanie", side:"left"});
+        allthingstosay.push({dialog: "My mom is picking me up for my orthodontist appointment.", 
                              charactername: "Melanie", characterimage: "charMelanie", side:"left"});
         
         var objchoices = [];

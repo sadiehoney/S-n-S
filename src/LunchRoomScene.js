@@ -20,24 +20,27 @@ BasicGame.LunchroomScene.prototype = {
 
         this.background = new ScaleBackground(this,'lunchroombg');        
         
-        this.ScoreBar = new ScoreBar(this,"Meet someone new");
+        var charscale = .75;
         
-        this.chloe = this.add.sprite(this.game.camera.x + (2 * this.game.camera.width/3), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charChloe');
-        this.chloe.anchor.set(0.5, 0.5);
-        
-        this.melanie = this.add.sprite(this.game.camera.x + (this.game.camera.width/3), 
-                                       this.game.camera.y + (this.game.camera.height/2), 'charMelanie');
-        this.melanie.anchor.set(0.5, 0.5);
-        
-        this.perry = this.add.sprite(this.game.camera.x + (this.game.camera.width/3 + 100), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charPerry');
-        this.perry.anchor.set(0.5, 0.5);
-        
-        this.aspen = this.add.sprite(this.game.camera.x + (this.game.camera.width/3 + 200), 
-                                     this.game.camera.y + (this.game.camera.height/2), 'charAspen');
-        this.aspen.anchor.set(0.5, 0.5);
+        this.aspen = this.add.sprite(this.game.world.centerX, 
+                                       this.game.world.centerY, 'talkAspen');
+        this.aspen.anchor.set(0.5, 0.25);
+        this.aspen.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
 
+        this.melanie = this.add.sprite(this.aspen.x - this.aspen.width * .4, 
+                                       this.game.world.centerY, 'talkMelanie');
+        this.melanie.anchor.set(0.5, 0.25);
+        this.melanie.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
+        this.melanie.angle = 8;
+        
+        this.perry = this.add.sprite(this.aspen.x + this.aspen.width * .5, 
+                                     this.game.world.centerY, 'talkPerry');
+        this.perry.anchor.set(0.5, 0.15);
+        this.perry.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
+        
+
+        this.ScoreBar = new ScoreBar(this,"Meet someone");
+        
         this.dialogGroup = this.game.add.group();
         
         //for testing
@@ -72,26 +75,31 @@ BasicGame.LunchroomScene.prototype = {
         //group for the say smile buttons
         this.btnGroup = this.game.add.group();
         if (!BasicGame.blspoketomelanielunch) {
-            this.btnmelaniesay = this.game.add.button((this.melanie.x), (this.melanie.y - 180), 'saysmile', 
+            this.btnmelaniesay = this.game.add.button((this.melanie.x), (this.melanie.top), 'saysmile', 
                                                        this.melanieDialog,this);
             this.btnmelaniesay.anchor.set(0.5,0.5);
-            this.tweenmelanie = this.add.tween(this.btnmelaniesay).to( { y:(this.btnmelaniesay.y + 10) }, 2200, 
+            this.btnmelaniesay.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
+            this.tweenmelanie = this.add.tween(this.btnmelaniesay).to( { y:(this.btnmelaniesay.top - this.btnmelaniesay.height/5) }, 2200, 
                                                                       Phaser.Easing.Bounce.Out, true,0,-1,true);
             this.btnGroup.add(this.btnmelaniesay);
             }
+        
         if (!BasicGame.blspoketoperrylunch) {
-            this.btnperrysay = this.game.add.button((this.perry.x), (this.perry.y - 180), 'saysmile', 
+            this.btnperrysay = this.game.add.button((this.perry.x), (this.perry.top), 'saysmile', 
                                                        this.perryDialog,this);
             this.btnperrysay.anchor.set(0.5,0.5);
-            this.tweenperry = this.add.tween(this.btnperrysay).to( { y:(this.btnperrysay.y + 15) }, 2600, 
+            this.btnperrysay.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
+            this.tweenperry = this.add.tween(this.btnperrysay).to( { y:(this.btnperrysay.top - this.btnperrysay.height/5) }, 2600, 
                                                                   Phaser.Easing.Bounce.Out,true,0,-1,true);
             this.btnGroup.add(this.btnperrysay);
         }
+        
         if (!BasicGame.blspoketoaspenlunch) {
-            this.btnaspensay = this.game.add.button((this.aspen.x), (this.aspen.y - 180), 'saysmile', 
+            this.btnaspensay = this.game.add.button((this.aspen.x), (this.aspen.top), 'saysmile', 
                                                        this.aspenDialog,this);
             this.btnaspensay.anchor.set(0.5,0.5);
-            this.tweenaspen = this.add.tween(this.btnaspensay).to( { y:(this.btnaspensay.y + 10) }, 2000, 
+            this.btnaspensay.scale.setTo(BasicGame.scaleofimages * charscale,BasicGame.scaleofimages * charscale);
+            this.tweenaspen = this.add.tween(this.btnaspensay).to( { y:(this.btnaspensay.top - this.btnaspensay.height/5) }, 2000, 
                                                                   Phaser.Easing.Bounce.Out,true,0,-1,true);             
             this.btnGroup.add(this.btnaspensay);
         }

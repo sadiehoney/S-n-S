@@ -1,16 +1,25 @@
 var ScaleBackground = function(callingcontext,background) {
 
-    callingcontext.background = callingcontext.add.sprite(0,0,background);
-    //callingcontext.background.alpha = 0;
+    //center the background in the game
     
-    
-    //calculate where to place the camera based on window size and pixel ratio
-    
-    callingcontext.cameraX = callingcontext.game.world.centerX - callingcontext.game.width/2;
-    callingcontext.cameraY = callingcontext.game.world.centerY - callingcontext.game.height/2;
+    callingcontext.background = callingcontext.add.sprite(callingcontext.game.world.centerX,
+                                                          callingcontext.game.world.centerY,background);
+    callingcontext.background.anchor.set(0.5, 0.5);
+    callingcontext.background.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
 
-    callingcontext.game.camera.x = callingcontext.cameraX;
-    callingcontext.game.camera.y = callingcontext.cameraY;
+    //save visible x, y, width, & height coordinates for later
+    callingcontext.visibleX = callingcontext.game.camera.x; //assume the camera x is correct (horizontal has been fine)
+    callingcontext.visibleY = callingcontext.game.world.centerY - (window.innerHeight * window.devicePixelRatio)/2;
+    callingcontext.visibleWidth = callingcontext.game.camera.width;
+    callingcontext.visibleHeight = window.innerHeight * window.devicePixelRatio;
+
+    console.log("camera width:" + callingcontext.game.camera.width + "camera height:" + callingcontext.game.camera.height);
+    console.log("visible width:" + callingcontext.visibleWidth + "visible height:" + callingcontext.visibleHeight);
+    console.log("visible X:" + callingcontext.visibleX + "visible Y:" + callingcontext.visibleY);
+    console.log("camera X:" + callingcontext.game.camera.x + "camera Y:" + callingcontext.game.camera.y);
+    console.log("gameworld center X:" + callingcontext.game.world.centerX + "gameworld center Y:" + callingcontext.game.world.centerY);
+
+    //callingcontext.background.alpha = 0;
     
     //background fades in - seems to cause a performance hit
     //callingcontext.game.add.tween(callingcontext.background).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 0, false);

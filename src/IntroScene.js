@@ -16,40 +16,41 @@ BasicGame.IntroScene.prototype = {
 
         this.background = new ScaleBackground(this,'introbg');        
         
-        this.character = this.add.sprite(this.game.camera.x + this.game.camera.width/2, 
-                                         this.game.camera.y + this.game.camera.height/2, 'charChloe');
-        this.character.anchor.set(0.5, 0.5);
+        this.character = this.add.sprite(this.game.world.centerX - (this.game.camera.width/4), 
+                                         this.game.world.centerY, 'talkChloe');
+        this.character.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
+        this.character.anchor.set(0.5, 0.15);
         
-        this.ScoreBar = new ScoreBar(this, "Meet your character");
+        this.ScoreBar = new ScoreBar(this, "Meet Chloe");
         
         this.btnGroup = this.game.add.group();
-        var btnsaysmile = this.game.add.button(this.character.x, (this.character.y - 200), 'saysmile', this.chloeDialog,this);
+        var btnsaysmile = this.game.add.button(this.character.x, (this.character.top), 'saysmile', this.chloeDialog,this);
+        btnsaysmile.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
         
         //btnsaysmile.setFrames(btPlaySelecionado, btPlay);
         btnsaysmile.anchor.set(0.5,0.5);
         this.btnGroup.add(btnsaysmile);
         
         var tween;
-        tween = this.add.tween(btnsaysmile).to( { y: (this.character.y - 175) }, 2400, Phaser.Easing.Bounce.Out, true);
+        tween = this.add.tween(btnsaysmile).to( { y: (this.character.top - btnsaysmile.height/5) }, 2400, Phaser.Easing.Bounce.Out, true);
         tween.repeat(10);     
+        
+        /* debug stuff */
+        /*
+        this.info = this.game.add.text(16, 100, ' ');
+        this.info.font = "Courier";
+        this.info.fontSize = 18;
+        this.info.fill = "red";
+        this.info.lineSpacing = 4;
+//        this.info.setShadow(2, 2); */
 
 	},
 
 	chloeDialog: function () {
         
-        //this.background = new ScaleBackground(this,'introbg');        
-
         this.btnGroup.destroy(true,false);
-        this.character.destroy();
-
-        this.chloe = this.add.sprite(this.cameraX + (this.game.camera.width/3), 
-                                       this.cameraY + (1.5 * this.game.camera.height/10), 'talkChloe');
-        this.chloe.anchor.set(0.5, 0);
         
-        this.ScoreBar = new ScoreBar(this, "Meet your character");
-
         this.dialogGroup = this.game.add.group();
-
     
             //create a dialog object with thingtosay, nameofcharacter, characterimage
         var allthingstosay = [];
@@ -74,8 +75,19 @@ BasicGame.IntroScene.prototype = {
 
     update: function () {
 
-		//	anthing that needs to fire on update
+		//	scaling debug stuff
+        /*
+        var s = "Game size: " + this.game.width + " x " + this.game.height + "\n";
+        s = s + "Actual size: " + this.game.scale.width + " x " + this.game.scale.height + "\n";
+        s = s + "minWidth: " + this.game.scale.minWidth + " - minHeight: " + this.game.scale.minHeight + "\n";
+        s = s + "maxWidth: " + this.game.scale.maxWidth + " - maxHeight: " + this.game.scale.maxHeight + "\n";
+        s = s + "aspect ratio: " + this.game.scale.aspectRatio + "\n";
+        s = s + "parent is window: " + this.game.scale.parentIsWindow + "\n";
+        s = s + "bounds x: " + this.game.scale.bounds.x + " y: " + this.game.scale.bounds.y + "\n";
+        s = s + "width: " + this.game.scale.bounds.width + "height: " + this.game.scale.bounds.height + "\n";
+        s = s + "scalemode: " + this.game.scale.currentScaleMode;
 
+	   this.info.text = s; */
 	},
 
 	startGame: function () {  

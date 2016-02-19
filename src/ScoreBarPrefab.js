@@ -8,47 +8,59 @@ var ScoreBar = function(callingcontext, goal) {
     y = callingcontext.game.camera.y;
     gamewidth = callingcontext.game.camera.width;
     gameheight = callingcontext.game.camera.height;
-    footery = y + gameheight - gameheight/8;
+    //footery = callingcontext.game.world.centerY;
+    bottomgameY = y + gameheight;
+    //footery = y + (window.innerHeight * window.devicePixelRatio);
 
     callingcontext.scorebar = callingcontext.add.graphics(0,0);
     callingcontext.scorebar.lineStyle(2,0x000000, 1);
     callingcontext.scorebar.beginFill(0xFFFFFF);
     callingcontext.scorebar.drawRect(x, y, gamewidth, gameheight/10);
+    padding = gamewidth/100;
+
+    callingcontext.watermark = callingcontext.add.sprite((x + callingcontext.scorebar.width - padding),
+                                                         y + callingcontext.scorebar.height/2,'watermark');
+    callingcontext.watermark.anchor.set(1,0.5);
+    callingcontext.watermark.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
     
-    
-    callingcontext.goaltext = callingcontext.game.add.text(x+20,
-                                                           y + callingcontext.scorebar.height/2,"Goal: " + goal);
-    callingcontext.goaltext.anchor.set(0,0.5);
-    
-    
-    callingcontext.scoreheart = callingcontext.add.sprite(x + gamewidth/2,
+
+    callingcontext.scoreheart = callingcontext.add.sprite(x + padding,
                                                           y + callingcontext.scorebar.height/2,'heart');
-    callingcontext.scoreheart.anchor.set(0.5,0.5);
+    callingcontext.scoreheart.anchor.set(0,0.5);
+    callingcontext.scoreheart.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
     
     
-    callingcontext.scoretext = callingcontext.add.text(x + gamewidth/2,
-                                                       y + callingcontext.scorebar.height/2,BasicGame.score);
+    callingcontext.scoretext = callingcontext.add.text(callingcontext.scoreheart.left + callingcontext.scoreheart.width/2,
+                                                       callingcontext.scoreheart.top + callingcontext.scoreheart.height/2,
+                                                       BasicGame.score);
     callingcontext.scoretext.anchor.set(0.5,0.5);
     
     
-    callingcontext.watermark = callingcontext.add.sprite((x + callingcontext.scorebar.width - 80),
-                                                         y + callingcontext.scorebar.height/2,'watermark');
-    callingcontext.watermark.anchor.set(0.5,0.5);
-    
+
 
     callingcontext.footer = callingcontext.add.graphics(0,0);
     callingcontext.footer.lineStyle(2,0x000000, 1);
     callingcontext.footer.beginFill(0xFFFFFF);
-    callingcontext.footer.drawRoundedRect(0,0, gamewidth, gameheight/15);
-    callingcontext.footer.visible = false;
+    footerheight = gameheight/10;
+    callingcontext.footer.drawRect(x,bottomgameY - footerheight, gamewidth, footerheight);
+
+    callingcontext.goaltext = callingcontext.game.add.text(x+20,
+                                                           bottomgameY - footerheight/2,goal);
+    callingcontext.goaltext.anchor.set(0,0.5);
+
+    //callingcontext.footer.visible = false;
     
-    callingcontext.feedbackbutton = callingcontext.add.button(x,footery,
-                                            callingcontext.footer.generateTexture(),this.signup,callingcontext);
-    callingcontext.feedbackbutton.alpha = 0.3;
+    //callingcontext.feedbackbutton = callingcontext.add.button(x,callingcontext.game.world.bounds.bottom,
+    //                                        callingcontext.footer.generateTexture(),this.signup,callingcontext);
+    
+    //callingcontext.footer.anchor.y = 1;
+    
+    //callingcontext.feedbackbutton.alpha = 0.3;
+    /*
     callingcontext.signuptext = callingcontext.add.text(x + gamewidth/2,
                                                         footery + callingcontext.feedbackbutton.height/2,
-                                                        "Like what you see? Sign up to play the full game when it's ready!",
-                                                       {font: '20px Arial',fill: '#000'});
+                                                        "Play the full game when it's ready!",
+                                                       {font: '30px Arial',fill: '#000'});
     callingcontext.signuptext.anchor.set(0.5,0.5);
     
     callingcontext.tweenfeedbackbutton = 
@@ -59,9 +71,10 @@ var ScoreBar = function(callingcontext, goal) {
     
     callingcontext.copyrighttext = callingcontext.add.text(x + gamewidth/2, 
                                                            footery + callingcontext.feedbackbutton.height * 1.5, 
-                                                           "Copyright 2016 Sweet-n-Sour",{font: '15px Arial',fill: '#000'});
+                                                           "Copyright 2016 Sweet-n-Sour",{font: '20px Arial',fill: '#000'});
     callingcontext.copyrighttext.anchor.set(0.5,0.5);
-
+*/
+    
 };
 
 ScoreBar.prototype = Object.create(Phaser.Graphics.prototype);
@@ -113,13 +126,15 @@ ScoreBar.prototype.signup = function() {
 
 ScoreBar.prototype.trackevent = function(state,action) { 
     
-    //google analytics code
-    ga('send', {
-        hitType: 'event',
-        eventCategory: state, //game state (or scene)
-        eventAction: action, //button clicked
-        eventLabel: 'Phaser v1' //version of the game
-    });
+    if (strEnvironment != "test") {
+        //google analytics code
+        ga('send', {
+            hitType: 'event',
+            eventCategory: state, //game state (or scene)
+            eventAction: action, //button clicked
+            eventLabel: 'Phaser v1' //version of the game
+        });
+    }
     
 };
 
