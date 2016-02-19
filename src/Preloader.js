@@ -86,8 +86,8 @@ BasicGame.Preloader.prototype = {
 		if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
 		{
 			this.ready = true;
-			//this.state.start('SplashScene');
-            this.state.start('LunchroomScene');
+			this.state.start('SplashScene');
+            //this.state.start('LunchroomScene');
 		}
 
 	} 
