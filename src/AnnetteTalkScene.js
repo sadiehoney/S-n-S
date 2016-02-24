@@ -42,7 +42,7 @@ BasicGame.AnnetteTalkScene.prototype = {
         var objchoices = [];
         objchoices.push({choicetxt: "I'm excited to meet people!", 
                          choicedestination: this.excitedToMeetPeople});
-        objchoices.push({choicetxt: "I have enough friends already.", 
+        objchoices.push({choicetxt: "I have enough friends.", 
                          choicedestination: this.haveEnoughFriends});
         
         this.dialogarray = allthingstosay;

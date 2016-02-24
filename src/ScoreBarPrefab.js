@@ -18,15 +18,15 @@ var ScoreBar = function(callingcontext, goal) {
     callingcontext.scorebar.drawRect(x, y, gamewidth, gameheight/10);
     padding = gamewidth/100;
 
-    callingcontext.watermark = callingcontext.add.sprite((x + callingcontext.scorebar.width - padding),
+    callingcontext.watermark = callingcontext.add.sprite((x + callingcontext.scorebar.width - 3 * padding),
                                                          y + callingcontext.scorebar.height/2,'watermark');
     callingcontext.watermark.anchor.set(1,0.5);
     callingcontext.watermark.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
     
 
-    callingcontext.scoreheart = callingcontext.add.sprite(x + padding,
+    callingcontext.scoreheart = callingcontext.add.sprite(x + 3 * padding + (heartwidth/2 * BasicGame.scaleofimages),
                                                           y + callingcontext.scorebar.height/2,'heart');
-    callingcontext.scoreheart.anchor.set(0,0.5);
+    callingcontext.scoreheart.anchor.set(0.5,0.5);
     callingcontext.scoreheart.scale.setTo(BasicGame.scaleofimages,BasicGame.scaleofimages);
     
     
@@ -68,12 +68,12 @@ var ScoreBar = function(callingcontext, goal) {
                                                                      500, 
                                                                      null, true,0,0,true);
 
-    
-    callingcontext.copyrighttext = callingcontext.add.text(x + gamewidth/2, 
-                                                           footery + callingcontext.feedbackbutton.height * 1.5, 
-                                                           "Copyright 2016 Sweet-n-Sour",{font: '20px Arial',fill: '#000'});
-    callingcontext.copyrighttext.anchor.set(0.5,0.5);
-*/
+    */
+    callingcontext.copyrighttext = callingcontext.add.text(x + gamewidth, 
+                                                           bottomgameY - footerheight/8, 
+                                                           "Copyright 2016 Sweet-n-Sour   ",{font: '10px Arial',fill: '#000'});
+    callingcontext.copyrighttext.anchor.set(1,0.5);
+
     
 };
 

@@ -86,6 +86,8 @@
     <script src="src/PerryLunchRoomScene.js"></script>
     <script src="src/AspenLunchRoomScene.js"></script>
     <script src="src/MelanieLunchRoomScene.js"></script>
+    <script src="src/FeedbackScene.js"></script>
+    <script src="src/TestScene.js"></script>
 
     <script src="src/MainMenu.js"></script>
 	<script src="src/Game.js"></script>
@@ -112,6 +114,7 @@
     
     //var game = new Phaser.Game(w,h,Phaser.AUTO,'game');
     var game = new Phaser.Game(w,h,Phaser.AUTO);
+
     
     /*
     // get dimensions of the window considering retina displays
@@ -146,8 +149,10 @@
 	game.state.add('PerryLunchroomScene', BasicGame.PerryLunchroomScene);
 	game.state.add('MelanieLunchroomScene', BasicGame.MelanieLunchroomScene);
 	game.state.add('AspenLunchroomScene', BasicGame.AspenLunchroomScene);
+	game.state.add('FeedbackScene', BasicGame.FeedbackScene);
 	game.state.add('MainMenu', BasicGame.MainMenu);
 	game.state.add('Game', BasicGame.Game);
+	game.state.add('TestScene', BasicGame.TestScene);
 
 	//	Now start the Boot state.
 	game.state.start('Boot');

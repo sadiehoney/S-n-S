@@ -6,6 +6,7 @@ var feedbackURL = 'http://www.sweetnsourgame.com/ideas';
 var signupURL = 'http://www.sweetnsourgame.com/tellme';
 var preLoaderBar = 'asset/preloader.png';
 var heartSprite = 'asset/buttons/heart-69x50.png';
+var heartwidth = 69;
 var saySmileSprite = 'asset/saysmile.png';
 var watermark = 'asset/background/logo_69x50.png';
 var ScoreBell = 'asset/sounds/bell-short.m4a';

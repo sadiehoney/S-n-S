@@ -87,7 +87,8 @@ BasicGame.Preloader.prototype = {
 		{
 			this.ready = true;
 			this.state.start('SplashScene');
-            //this.state.start('LunchroomScene');
+            //this.state.start('TestScene');
+            //this.state.start('FeedbackScene');
 		}
 
 	} 

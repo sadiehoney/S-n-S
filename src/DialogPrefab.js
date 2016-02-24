@@ -50,8 +50,8 @@ Dialog.prototype.PrintDialog = function (name,image,side,thingtosay,calledfromth
     //dialog background width is based on how big the scene background is
     var dialogbgwidth = (calledfromthiscontext.game.camera.width)/2; // 2*1/3 if we have it accross the whole screen
 
-    var namestyle = {font: '25px Arial',fill: '#bebebe'};
-    var dialogstyle = {font: '25px Arial',fill: '#000'};
+    var namestyle = {font: '20px Arial',fill: '#bebebe'};
+    var dialogstyle = {font: '20px Arial',fill: '#000'};
 
     //create the name and dialog objects to see how long they are
     var nametxt = calledfromthiscontext.add.text(0, 0, name, namestyle);
@@ -105,7 +105,7 @@ Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calle
     var buttonbgwidth = calledfromthiscontext.game.camera.width/2;
     var buttonpadding = 15;
     
-    var buttonstyle = { font: '25px Arial'};
+    var buttonstyle = { font: '20px Arial'};
 
     var buttontxt = calledfromthiscontext.add.text(0,0, choice, buttonstyle);
     buttontxt.anchor.setTo(0.5,0.5);
@@ -116,7 +116,7 @@ Dialog.prototype.PrintButtons = function (choice,destination,thisbuttonnum,calle
 
     var buttonXcoordinate = calledfromthiscontext.game.camera.x + 
         calledfromthiscontext.game.camera.width/2.5 + 
-        buttonbgwidth/2;
+        buttonbgwidth/2 + calledfromthiscontext.game.camera.width/20;
     var buttonYcoordinate = calledfromthiscontext.bottombuttonY;
     if (thisbuttonnum > 0){
         buttonYcoordinate = buttonYcoordinate + buttonpadding;
